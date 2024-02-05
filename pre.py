@@ -20,6 +20,12 @@ rating_to_numeric = {
     '★★★★★' : 5, 
     '' : 0
 }
+
+def parse_entries(raw_diary): 
+    entry_list = list(raw_diary['entrys'].items())
+    diary_log_list = [i[1] for i in entry_list]
+    return diary_log_list
+
 """
 Returns list of movies with ratings
 from user diary
@@ -27,9 +33,9 @@ from user diary
 
 def watchedFilmsWithRatings(udiary):
     movie_list = []
-    for i in udiary[]: 
-        if i['rating'] != '': 
-            movie_list.append(i['movie_id'])
+    for i in udiary: 
+        if i['rating'] != None: 
+            movie_list.append(i['slug'])
 
     return list(set(movie_list))
 
@@ -52,8 +58,8 @@ from a list of movies and user diary
 
 def findMovieRating(id , diary): 
     for etr in diary: 
-        if etr['movie_id'] == id: 
-            return rating_to_numeric[etr['rating']]
+        if etr['slug'] == id: 
+            return etr['rating']
 
 def findVector(userd , movie_list): 
     l_ratings = [findMovieRating(i , userd) for i in movie_list]

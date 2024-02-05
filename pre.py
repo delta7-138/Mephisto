@@ -27,7 +27,7 @@ from user diary
 
 def watchedFilmsWithRatings(udiary):
     movie_list = []
-    for i in udiary: 
+    for i in udiary[]: 
         if i['rating'] != '': 
             movie_list.append(i['movie_id'])
 

@@ -5,7 +5,9 @@ from pre import *
 find friend vector between primary username 
 and follower username for every follower
 """
-
+def find_distance(root , v): 
+    return np.linalg.norm(root - v)
+    
 def find_friend_vector(u_diary , f_diary): 
     final_vector_list = []
     final_vector_list.append(len(watchedFilmsWithRatings(u_diary)))
@@ -32,7 +34,7 @@ def query_followers(uobj):
 """
 Loading for primary user
 """
-uname = input("Enter username : ")
-query_user = user.User(uname)
+# uname = input("Enter username : ")
+# query_user = user.User(uname)
 
-print(query_followers(query_user))
+# print(query_followers(query_user))

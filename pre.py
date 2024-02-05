@@ -20,21 +20,25 @@ rating_to_numeric = {
     '★★★★★' : 5, 
     '' : 0
 }
+"""
+Returns list of movies with ratings
+from user diary
+"""
+
+def watchedFilmsWithRatings(udiary):
+    movie_list = []
+    for i in udiary: 
+        if i['rating'] != '': 
+            movie_list.append(i['movie_id'])
+
+    return list(set(movie_list))
 
 """
 Finds common movies from user diaries
 """
 def findCommonMovies(x , y):
-    x_movie_list = []
-    y_movie_list = []
-
-    for i in x: 
-        if i['rating'] != '': 
-            x_movie_list.append(i['movie_id'])
-
-    for i in y: 
-        if i['rating'] != '': 
-            y_movie_list.append(i['movie_id'])
+    x_movie_list = watchedFilmsWithRatings(x)
+    y_movie_list = watchedFilmsWithRatings(y)
 
     return list(set(x_movie_list).intersection(y_movie_list))
 
@@ -67,25 +71,13 @@ def findCosine(v1 , v2):
     return np.dot(v1 , v2)
 
 
-"""
-Returns list of movies with ratings
-from user diary
-"""
-
-def watchedFilmsWithRatings(udiary):
-    movie_list = []
-    for i in udiary: 
-        if i['rating'] != '': 
-            movie_list.append(i['movie_id'])
-
-    return list(set(movie_list))
 
 """
 finds compatibility in common movies
 watched between the two users 
 """
 
-def findCompatibility(u1_reviews, u1_reviews): 
+def findCompatibility(u1_reviews, u2_reviews): 
     l = findCommonMovies(u1_reviews  , u2_reviews)
 
     v1 = findVector(u1_reviews , l)
